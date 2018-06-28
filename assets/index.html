@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="display">Hangman</h1>
+    <h2 class="lead">Guess a number to make the equation true.</h2>
+    <h2> Make sure you know the order of operations!</h2>
+  </div>
+  <div class="row">
+      <div class="col-sm-4">
+        <img src="images/Hangman.jpg" alt="Hangman comic">
+      </div>
+    <div class="col-md-8 gameplay-column">
+        <h2>Press Any Key to Get Started!</h2>
+        <h3 id="underScore">Current Word</h3>
+        <h3>Numbers or Symbols already guessed</h3>
+        <h3 id="wrongWord"></h3>
+        <h4>You have <span id="remaingingGuesses"></span> guesses left </span></h4>
+        <br>
+        <h3 id="rightWord">Wins</h3>
+    </div>
+  </div>
+
+<body>
+
+
+        <script>
+
+          // guessedLetters defined in lootp
+          var totalWins = 0;
+          var remaingingGuesses = 5;
+          var arr = ["2+4-5=3", "5+1*4-7=2", "3+1-5*2=6", "2*6-9=0+3"];
+          var word = arr[Math.floor(Math.random() * arr.length)];
+
+          var rightWord = [];
+          var wrongWord = [];
+          var underScore = [];
+
+          console.log(word);
+
+
+          //ask about this code... why doesn't it work when I use array []
+          for (var i = 0; i < word.length; i++) {
+            underScore.push("_");
+          }
+
+          // This function is run whenever the user presses a key.
+          document.onkeyup = function (event) {
+            var keyCode = event.keyCode;
+            if(keyCode === 16){
+              return;
+            }
+            console.log(keyCode);
+            // generateUnderscore();
+
+            // Determines which key was pressed.
+            var keyWord = event.key;
+
+            //users guess if right then
+            if (word.indexOf(keyWord) > -1) {
+              //adds the right letter/number to the array  
+              rightWord.push(keyWord);
+              //replace underscore with correct letter
+              underScore[word.indexOf(keyWord)] = keyWord;
+              //go into the index of var underscore ... takes new keyword then replaces new letter into the array
+              document.querySelector("#underScore").innerHTML = underScore.join(" ");
+              console.log("number guessed/keyword", keyWord);
+            }
+            if (underScore.join('') == word) {
+              alert("WINNER!");
+            }
+            //WHY ARE THERE COMMAS IN MY DISPLAY/
+            //MY ELSE IS NOT WORKING ANYMORE 
+            else {
+              wrongWord.push(keyWord);
+              remaingingGuesses--;
+              document.querySelector("#wrongWord").innerHTML = wrongWord;
+            }
+
+          };
+    // document.querySelector("#remaingGuesses").innerHTML = remaingingGuesses; 
+
+
+     // if(remaingingGuesses = 0);
+
+        </script>
+
+</html>
