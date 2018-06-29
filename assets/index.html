@@ -8,14 +8,14 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
     crossorigin="anonymous">
   <link rel="stylesheet" href="css/style.css">
-  <title>Document</title>
+  <title>Hangman</title>
 </head>
 
 <body>
   <div class="container">
-    <h1 class="display">Hangman</h1>
+    <h1 class="display">Mathematical Hangman</h1>
     <h2 class="lead">Guess a number to make the equation true.</h2>
-    <h2> Make sure you know the order of operations!</h2>
+    <h5> Make sure you know the order of operations!</h5>
   </div>
   <div class="row">
       <div class="col-sm-4">
@@ -28,7 +28,7 @@
         <h3 id="wrongWord"></h3>
         <h4>You have <span id="remaingingGuesses"></span> guesses left </span></h4>
         <br>
-        <h3 id="rightWord">Wins</h3>
+        <h3 id="wins">Wins</h3>
     </div>
   </div>
 
@@ -37,10 +37,10 @@
 
         <script>
 
-          // guessedLetters defined in lootp
+          
           var totalWins = 0;
           var remaingingGuesses = 5;
-          var arr = ["2+4-5=3", "5+1*4-7=2", "3+1-5*2=6", "2*6-9=0+3"];
+          var arr = ["2+4-5=3", "5+1*4-7=2", "3+1-5*2=6", "2*6-9=0+3","1*2+3=9-4"];
           var word = arr[Math.floor(Math.random() * arr.length)];
 
           var rightWord = [];
@@ -50,12 +50,12 @@
           console.log(word);
 
 
-          //ask about this code... why doesn't it work when I use array []
+          
           for (var i = 0; i < word.length; i++) {
             underScore.push("_");
           }
 
-          // This function is run whenever the user presses a key.
+          // This function runs whenever the user presses a key.
           document.onkeyup = function (event) {
             var keyCode = event.keyCode;
             if(keyCode === 16){
@@ -80,11 +80,14 @@
             if (underScore.join('') == word) {
               alert("WINNER!");
             }
-            //WHY ARE THERE COMMAS IN MY DISPLAY/
-            //MY ELSE IS NOT WORKING ANYMORE 
+            
             else {
               wrongWord.push(keyWord);
               remaingingGuesses--;
+              if (remaingingGuesses=0){
+                alert("GAME OVER");
+                return;
+              }
               document.querySelector("#wrongWord").innerHTML = wrongWord;
             }
 
