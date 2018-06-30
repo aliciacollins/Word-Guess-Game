@@ -18,85 +18,89 @@
     <h5> Make sure you know the order of operations!</h5>
   </div>
   <div class="row">
-      <div class="col-sm-4">
-        <img src="assets/images/Hangman.jpg" alt="Hangman comic">
-      </div>
+    <div class="col-sm-4">
+      <img src="assets/images/Hangman.jpg" alt="Hangman comic">
+    </div>
     <div class="col-md-8 gameplay-column">
+      <div class="box">
         <h2>Press Any Key to Get Started!</h2>
         <h3 id="underScore">Current Word</h3>
         <h3>Numbers or Symbols already guessed</h3>
         <h3 id="wrongWord"></h3>
-        <h4>You have <span id="remaingingGuesses"></span> guesses left </span></h4>
+        <h4>You have
+          <span id="remaingingGuesses"></span> guesses left </span>
+        </h4>
         <br>
-        <h3 id="wins">Wins</h3>
+  
+      </div>
     </div>
   </div>
 
-<body>
+  <body>
 
 
-        <script>
-
-          
-          var totalWins = 0;
-          var remaingingGuesses = 5;
-          var arr = ["2+4-5=3", "5+1*4-7=2", "3+1-5*2=6", "2*6-9=0+3","1*2+3=9-4"];
-          var word = arr[Math.floor(Math.random() * arr.length)];
-
-          var rightWord = [];
-          var wrongWord = [];
-          var underScore = [];
-
-          console.log(word);
+    <script>
 
 
-          
-          for (var i = 0; i < word.length; i++) {
-            underScore.push("_");
-          }
+  var totalWins = 0;
+  var remaingingGuesses = 6;
+  var arr = ["2+4-5=1", "5+1*4-7=2", "8-5*2+3=1", "2*6-9=3", "2+3=9-4", "2+5=7", "2*3=6", "3=9-6", "5-6+1=0"];
+  var word = arr[Math.floor(Math.random() * arr.length)];
 
-          // This function runs whenever the user presses a key.
-          document.onkeyup = function (event) {
-            var keyCode = event.keyCode;
-            if(keyCode === 16){
-              return;
-            }
-            console.log(keyCode);
-            // generateUnderscore();
+  var rightWord = [];
+  var wrongWord = [];
+  var underScore = [];
 
-            // Determines which key was pressed.
-            var keyWord = event.key;
+console.log(word);
 
-            //users guess if right then
-            if (word.indexOf(keyWord) > -1) {
-              //adds the right letter/number to the array  
-              rightWord.push(keyWord);
-              //replace underscore with correct letter
-              underScore[word.indexOf(keyWord)] = keyWord;
-              //go into the index of var underscore ... takes new keyword then replaces new letter into the array
-              document.querySelector("#underScore").innerHTML = underScore.join(" ");
-              console.log("number guessed/keyword", keyWord);
-            }
-            if (underScore.join('') == word) {
-              alert("WINNER!");
-            }
-            
-            else {
-              wrongWord.push(keyWord);
-              remaingingGuesses--;
-              if (remaingingGuesses=0){
-                alert("GAME OVER");
-                return;
-              }
-              document.querySelector("#wrongWord").innerHTML = wrongWord;
-            }
 
-          };
+    // generateUnderscore();
+  for (var i = 0; i < word.length; i++) {
+    underScore.push("_");
+  }
+
+  // This function runs whenever the user presses a key.
+  document.onkeyup = function (event) {
+    var keyCode = event.keyCode;
+    if (keyCode === 16) {
+      return;
+    }
+    // Determines which key was pressed.
+    var keyWord = event.key;
+
+    //users guess if right then
+    if (word.indexOf(keyWord) > -1) {
+      //adds the right letter/number to the array 
+      console.log("checking index", word.indexOf(keyWord)); 
+      rightWord.push(keyWord);
+      //replace underscore with correct letter
+      underScore[word.indexOf(keyWord)] = keyWord;
+      //go into the index of var underscore ... takes new keyword then replaces new letter into the array
+      document.querySelector("#underScore").innerHTML = underScore.join(" ");
+    }
+  
+    if (underScore.join('') == word) {
+      alert("WINNER! The correct exquation is " + word);
+    }
+
+    else {
+        remaingingGuesses--;
+    }
+
+  // if (remaingingGuesses = 0) {
+  //   alert("Game Over the correct exquation is " + word);
+  // }
+console.log("wrong", wrongWord);
+console.log("remainging guess", remaingingGuesses);
+  document.querySelector("#wrongWord").innerHTML = wrongWord;
+  document.querySelector("#remaingingGuesses").innerHTML = remaingingGuesses;
+
+};
     // document.querySelector("#remaingGuesses").innerHTML = remaingingGuesses; 
 
 
      // if(remaingingGuesses = 0);
 
-        </script>
+    </script>
 
 </html>
