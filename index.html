@@ -22,21 +22,26 @@
   </div>
   <container class="div">
     <div class="row no-gutters">
-      <div class="col-12 col-sm-6 col-md-8">
+      <div class="col-6 col-md-6">     
+        <br>
         <img src="assets/images/Hangman.jpg" alt="Hangman comic">
       </div>
-      <div class="col-6 col-md-4">
-        <h2 id = "underScore">----</h2>
-        <h3 id="winCounter">Number of wins</h3>
-        <br>
-        <h3 id="lossCounter">Number of losses</h3>
-        <br>
-        <h3>Numbers or Symbols already guessed</h3>
-        <br>
-        <h3 id = "wrongnumber">Wrong Guesses</h3>
-        <br>
+      <div class="col-8 col-md-4">
+        <br><br>
+        <h3>Solve the equation by filling in the blanks:</h3>
+        
+        <span id = "BlanksAndSuccesses"></span>
+        <br><br>
+        <h4>Number of Wins: </h4><span id="winCounter">0</span>
+        <br><br>
+        <h4> Number of Losses: </h4><span id="lossCounter">0</span>
+        <br><br>
+        <h4>Numbers or Symbols already guessed: </h4>
+        <br><br>
+        <h4 id = "wrongnumber">Wrong Guesses: </h4>
+        <br><br>
         <h3>You have
-          <span id="remaingingGuesses"></span> guesses left </span>
+          <span id="remaingingGuesses"></span> guesses remaining. </span>
         </h3>
       </div>
     </div>
@@ -53,7 +58,7 @@
     var selectedNumber = "";
     var numbersInEquation = [];
     var numBlanks = 0;
-    var underScore = [];
+    var BlanksAndSuccesses = [];
     var wrongNumber = [];
 
 
@@ -75,16 +80,16 @@
 
       remaingingGuesses = 9;
       wrongNumber = [];
-      underScore = [];
+      BlanksAndSuccesses = [];
       
 
       for(var i = 0; i < numBlanks; i++){
-        underScore.push("_");
+        BlanksAndSuccesses.push("_");
       }
   
-        console.log("underScore", underScore);
+        console.log("BlanksAndSuccesses", BlanksAndSuccesses);
 
-      document.getElementById("underScore").innerHTML = underScore.join("  ");
+      document.getElementById("BlanksAndSuccesses").innerHTML = BlanksAndSuccesses.join("  ");
       document.getElementById("winCounter").innerHTML = winCount;
       document.getElementById("lossCounter").innerHTML = lossCount;
       document.getElementById("remaingingGuesses").innerHTML = remaingingGuesses;
@@ -103,14 +108,15 @@
         if(selectedNumber[i] === number){
         isNumberInEquation === true;
         }
+        console.log("test");
       }
      
       if (isNumberInEquation) {
-       for (var i = 0; i < underScore; i++) {
+       for (var i = 0; i < BlanksAndSuccesses; i++) {
          if (selectedNumber[i] === number) {
            console.log("test");
-          underScore[i] === number;
-         
+          BlanksAndSuccesses[i] === number;
+         ///not working
         }
       }
     }
@@ -129,13 +135,14 @@
     }
     // Determines which key was pressed.
     var numberGuessed = event.key;
+
     checkNumber(numberGuessed);
      console.log("numberGuessed", numberGuessed);
 }
 
 
     // function roundComplete() {
-    //   if (isNumberInEquation.toString() === underScore.toString()) {
+    //   if (isNumberInEquation.toString() === BlanksAndSuccesses.toString()) {
     //     winCount++;
     //     alert("You Won!");
 
@@ -168,13 +175,13 @@
 //       //adds the right letter/number to the array 
 //       console.log("checking index", number.indexOf(keynumber)); 
 //       rightnumber.push(keynumber);
-//       //replace underscore with correct letter
-//       underScore[number.indexOf(keynumber)] = keynumber;
-//       //go into the index of var underscore ... takes new keynumber then replaces new letter into the array
-//       document.querySelector("#underScore").innerHTML = underScore.join(" ");
+//       //replace BlanksAndSuccesses with correct letter
+//       BlanksAndSuccesses[number.indexOf(keynumber)] = keynumber;
+//       //go into the index of var BlanksAndSuccesses ... takes new keynumber then replaces new letter into the array
+//       document.querySelector("#BlanksAndSuccesses").innerHTML = BlanksAndSuccesses.join(" ");
 //     }
 
-//     if (underScore.join('') == number) {
+//     if (BlanksAndSuccesses.join('') == number) {
 //       alert("WINNER! The correct exquation is " + number);
 //     }
 
