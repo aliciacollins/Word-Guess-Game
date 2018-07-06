@@ -105,17 +105,17 @@
 
 
       for (var i = 0; i < numBlanks; i++) {
-        if(selectedNumber[i] === number){
-        isNumberInEquation === true;
+        if(selectedNumber[i] == number){
+        isNumberInEquation == true;
         }
-        console.log("test");
+        console.log("test A");
       }
      
       if (isNumberInEquation) {
        for (var i = 0; i < BlanksAndSuccesses; i++) {
-         if (selectedNumber[i] === number) {
+         if (selectedNumber[i] == number) {
            console.log("test");
-          BlanksAndSuccesses[i] === number;
+          BlanksAndSuccesses[i] = number;
          ///not working
         }
       }
